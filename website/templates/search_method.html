@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block head %}
+{% if method == 'genres' %}
+Recommand by Genre
+{% elif method == 'Books' %}
+Recommand by Book Name
+{% else %}
+Recommand by Author
+{%endif%}
+{% endblock%}
+
+
+{% block content %}
+<br>
+
+
+<form method = "POST">
+    {% if method == 'genres' %}
+    <div class="genre_form_group">
+        <label for="select_genre" style="font-size: 25px; color:lightyellow">1. Select Genre: </label>
+        <select class="form-select" 
+                aria-label="Default select example"\
+                placeholder="Select your genre"
+                class="form-control" 
+                id="select_genre" 
+                name="select_genre" 
+                >
+            {% for genre in genres %}
+            <option type="text">{{ genre }}</option>
+            {%endfor%}
+        </select>
+    </div>
+
+
+
+
+    {% elif method == 'Books' %}
+
+    <div class="book_form_group">
+        <label for="book_name" style="font-size: 25px; color:lightyellow">1. Book Name: </label>
+        <input type="text" class = "form-text" name="book_name" id="book_name" placeholder="Eg. Pride and Prejudice">
+    </div>
+
+    {% else %}
+    <div class="author_form_group">
+        <label for="author_name" style="font-size: 25px; color:lightyellow">1. Author Name: </label>
+        <input type="text" class = "form-text" name="author_name" id="author_name" placeholder="Eg. Jane Austen">
+    </div>
+
+    {% endif %}
+    <br>
+    <div class="slidecontainer">
+        <label for="number_slide_bar" style="font-size: 25px; color:lightyellow">2. How many books: </label>
+        <br>
+        <input type="range" 
+                style="width: 500px;" 
+                class="slide" min="0" max= {{num_books}} 
+                step="1" id="myRange" name="myRange">
+        <p style="font-size: 25px; color:lightyellow">Value: <span id="slide_val"></span></p>
+        <script>
+            var slider = document.getElementById("myRange");
+            var output = document.getElementById("slide_val");
+            output.innerHTML = slider.value;
+
+            slider.oninput = function() {
+                output.innerHTML = this.value;
+            }
+        </script>
+    </div>
+
+    <div class="search_Button">
+        <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+</form>
+
+{% endblock %}

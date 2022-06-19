@@ -1,0 +1,15 @@
+body {
+    margin: 0;
+    padding:0;
+    font-family: sans-serif;
+}
+
+img {
+    border: 5px solid #000;
+    background-color: #000;
+}
+
+.drop_down {
+    display: inline-block;
+    position: relative;
+}

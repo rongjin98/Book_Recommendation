@@ -1,0 +1,33 @@
+{% extends 'base.html'%}
+{% block head %} 
+Book Recommendation System
+{% endblock%}
+
+
+
+
+{% block content %}
+<br>
+<form method="POST">
+    <br>
+    <div class = "drop_down">
+        <label for="search_method" style="font-size: 25px; color:lightyellow">Search by: </label>
+        <div class="search_method" role="group" aria-label="Basic example">
+            <a href="/genres">
+                <button type="button" class="btn btn-secondary">Genres</button>
+            </a>
+
+            <a href="/books">
+                <button type="button" class="btn btn-secondary">Books</button>
+            </a>
+
+            <a href="/authors">
+                <button type="button" class="btn btn-secondary">Authors</button>
+            </a>
+            
+        </div>
+    </div>
+
+
+</form>
+{% endblock%}
