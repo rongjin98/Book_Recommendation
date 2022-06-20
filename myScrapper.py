@@ -1,8 +1,10 @@
 from collections import defaultdict
-from utils import helper, db_helper
 from bs4 import BeautifulSoup
 from collections import defaultdict
 from selenium import webdriver
+from utils import helper, db_helper
+
+
 
 
 DB_helper = db_helper.DB_Helper()

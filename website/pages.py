@@ -3,7 +3,7 @@ from flask import Blueprint, render_template, request, flash, jsonify
 from flask import redirect, url_for
 from .database import mongo_db
 from utils import api_helper
-from web_scrapper import scrape_on_request
+from . import scrape_on_request
 from bson.objectid import ObjectId
 
 

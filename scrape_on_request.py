@@ -1,7 +1,7 @@
-from .ScrapeByAuthor import ScrapeByAuthor
-from .ScrapeByBook import ScrapeByBook
-from .ScrapeByGenre import ScrapeByGenre
-from .myScrapper import MyScrapper
+from web_scrapper import ScrapeByAuthor
+from web_scrapper import ScrapeByGenre
+from web_scrapper import ScrapeByBook
+from myScrapper import MyScrapper
 
 def scrape_by_genre(num_genres, num_books, reset):
     genre_scraper = ScrapeByGenre()
@@ -29,11 +29,4 @@ def scrape_by_author(num_books, author_url):
     return books
 
 if __name__ == "__main__":
-    book_url = "https://www.goodreads.com/book/show/58690308-book-lovers"
-    author_url = "https://www.goodreads.com/author/show/13905555.Emily_Henry"
-
-    scrape_by_book(2, book_url)
-    print("Done scraping by book")
-
-    scrape_by_author(2, author_url)
-    print("Done scraping by author")
+    scrape_by_genre(10, 200, reset=True)
