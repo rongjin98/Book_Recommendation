@@ -3,7 +3,7 @@ from flask import Blueprint, render_template, request, flash, jsonify
 from flask import redirect, url_for
 from .database import mongo_db
 from utils import api_helper
-from . import scrape_on_request
+from scrape_on_request import scrape_by_author
 from bson.objectid import ObjectId
 
 
@@ -84,7 +84,7 @@ def authors():
             result_dict = json.dumps(result_dict)
             return redirect(url_for('pages.recommendation', result_dict = result_dict))
         else:
-            book_lists = scrape_on_request.scrape_by_author(DefualtAmount - cnt, author_url)
+            book_lists = scrape_by_author(DefualtAmount - cnt, author_url)
             for i in range(len(book_lists)):
                 book_info = api_helper.add_book_info(book_lists[i])
                 api_helper.add_to_dict(result_dict, book_info, 'book')

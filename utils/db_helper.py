@@ -8,7 +8,7 @@ class DB_Helper:
     def __init__(self, save_dir = "result.json", 
                        home_link = "https://www.goodreads.com", 
                        connect_str = "mongodb+srv://rongjin74:"
-                                    + urllib.parse.quote("<password>") +
+                                    + urllib.parse.quote("password") +
                                     "@cluster0.zyy93.mongodb"
                                     ".net/?"
                                     "retryWrites=true&w=majority"):

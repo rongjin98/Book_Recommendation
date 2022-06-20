@@ -29,4 +29,5 @@ def scrape_by_author(num_books, author_url):
     return books
 
 if __name__ == "__main__":
-    scrape_by_genre(10, 200, reset=True)
+    # scrape_by_genre(10, 200, reset=True)
+    print("Hello")
