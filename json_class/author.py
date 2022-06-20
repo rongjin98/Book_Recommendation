@@ -9,4 +9,4 @@ class Author:
         self.rating_count = rating_count
         self.review_count = review_count
         self.image_url = image_url
-        self.author_books = "\n".join(author_books)
+        self.author_books = author_books

@@ -33,7 +33,9 @@ def get_similar_book_name_author(similar_books):
     names = []
     for i in range(1, len(similar_books)):
         content = similar_books[i].find("span")
-        if content and not content.isdigit():
+        if not content:
+            continue
+        elif not content.text.isdigit():
             names.append(content.text)
     return names
 
@@ -144,8 +146,7 @@ def extract_book_neo(soup, author_url, book_url):
         similar = soup.find(class_="BookPage__relatedTopContent").find_all(class_="BookCard__title")
     similar_books = set()
     for item in similar:
-        if not item.text.isdigit():
-            similar_books.add(item.text)
+        similar_books.add(item.text)
     similar_books = list(similar_books)
 
     return Book(title, book_url, book_id, isbn, author_url, author, rating, rating_count,

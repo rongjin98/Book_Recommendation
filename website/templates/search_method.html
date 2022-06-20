@@ -19,7 +19,7 @@ Recommand by Author
     <div class="genre_form_group">
         <label for="select_genre" style="font-size: 25px; color:lightyellow">1. Select Genre: </label>
         <select class="form-select" 
-                aria-label="Default select example"\
+                aria-label="Default select example"
                 placeholder="Select your genre"
                 class="form-control" 
                 id="select_genre" 
@@ -31,23 +31,54 @@ Recommand by Author
         </select>
     </div>
 
+    
 
+    
 
 
     {% elif method == 'Books' %}
 
     <div class="book_form_group">
-        <label for="book_name" style="font-size: 25px; color:lightyellow">1. Book Name: </label>
+        <label for="book_name" style="font-size: 25px; color:lightyellow">Select Your Interested Book </label>
         <input type="text" class = "form-text" name="book_name" id="book_name" placeholder="Eg. Pride and Prejudice">
     </div>
 
     {% else %}
     <div class="author_form_group">
-        <label for="author_name" style="font-size: 25px; color:lightyellow">1. Author Name: </label>
-        <input type="text" class = "form-text" name="author_name" id="author_name" placeholder="Eg. Jane Austen">
+        <label for="author_name" style="font-size: 25px; color:lightyellow">Select Your Interested Author</label>
+        <div align = "center" class="books_table">
+            <table class="table table-striped table-dark">
+                <thead>
+                <tr>
+                    <th scope="col">Author</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Rating</th>
+                    <th scope="col">Total Ratings</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for i in range(result_dict['len'][0]) %}
+                <tr>
+                    <td class = "bookCover">
+                    <a href="{{ result_dict['author_url'][i]}}", target = "_blank">
+                        <img src="{{ result_dict['img'][i] }}" alt="Image Not Available" style="width: 200px; height: 250px">
+                    </a>
+                    </td>
+                    <td>
+                    <input type="radio" id="author_url" name="author_url" value="{{ result_dict['author_url'][i] + '@' + result_dict['author'][i]}}">
+                    {{ result_dict['author'][i] }}
+                    </td>
+                    <td>{{ result_dict['rating'][i][0] }}</td>
+                    <td>{{ result_dict['rating'][i][1] }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
 
     {% endif %}
+    {% if method != 'Authors'%}
     <br>
     <div class="slidecontainer">
         <label for="number_slide_bar" style="font-size: 25px; color:lightyellow">2. How many books: </label>
@@ -67,10 +98,12 @@ Recommand by Author
             }
         </script>
     </div>
-
-    <div class="search_Button">
-        <button type="submit" class="btn btn-primary">Search</button>
+    
+    {% endif %}
+    <div class="search_Button" align="center">
+        <button type="submit" class="btn btn-primary btn-lg btn-block">Search</button>
     </div>
+    
 </form>
 
 {% endblock %}

@@ -23,6 +23,7 @@
 {% endblock %}
 
 {% block content %}
+
   <div align = "center" class="books_table">
     <table class="table table-striped table-dark">
       <thead>
@@ -31,6 +32,8 @@
           <th scope="col">Book Name</th>
           <th scope="col">Author</th>
           <th scope="col">Rating</th>
+          <th scope="col">Total Ratings</th>
+          <th scope="col">Add to Dashboard</th>
         </tr>
       </thead>
       <tbody>
@@ -40,12 +43,20 @@
             <img src="{{ result_dict['img'][i] }}" alt="Image Not Available" style="width: 200px; height: 250px">
           </td>
           <td>
-            <a href="{{ result_dict['book_url'][i]}}", target = "_blank">
-              {{ result_dict['title'][i] }}
-            </a>
+            <a href="{{ result_dict['book_url'][i]}}", target = "_blank">{{ result_dict['title'][i] }}</a>
           </td>
           <td>{{ result_dict['author'][i] }}</td>
-          <td>{{ result_dict['rating'][i] }}</td>
+          <td>{{ result_dict['rating'][i][0] }}</td>
+          <td>{{ result_dict['rating'][i][1] }}</td>
+          <td>
+            <form action='/add-book' method="POST" >
+              <input type ="hidden", 
+                     id = "book_info", 
+                     name = "book_info"
+                     class = "book_info",
+                     value = "{{ result_dict['title'][i] +'@'+ result_dict['book_url'][i] + '@' + result_dict['img'][i]}}">
+              <button type="submit" class="btn btn-info" onClick="window.location.reload()">Add</button>
+            </form>
         </tr>
         {% endfor %}
       </tbody>
